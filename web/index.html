@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Serenity 追蹤</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="shell">
+  <nav class="side">
+    <div class="brand">Serenity 追蹤</div>
+    <a class="nav" href="#latest" data-page="latest">最新推文</a>
+    <a class="nav" href="#ticker" data-page="ticker">查股票</a>
+    <a class="nav" href="#top" data-page="top">熱門股票</a>
+    <a class="nav" href="#ask" data-page="ask">問 AI</a>
+    <div class="side-foot">
+      <div class="muted small" id="status">讀取中…</div>
+      <button class="btn" id="refresh">抓最新推文</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <!-- 最新推文 -->
+    <section class="page" id="page-latest">
+      <header class="page-head">
+        <h1>最新推文</h1>
+        <p class="lead">Serenity（X 帳號 @aleabitoreddit）發的推文，已翻成中文。點股票代號可以看跟單他會賺還是賠。</p>
+      </header>
+      <div id="latest-list" class="list"></div>
+      <button class="btn ghost" id="latest-more" hidden>載入更多</button>
+    </section>
+
+    <!-- 查股票 -->
+    <section class="page" id="page-ticker">
+      <header class="page-head">
+        <h1>查股票</h1>
+        <p class="lead">輸入他提過的股票代號，看他講了什麼，還有「跟他買」到今天賺賠多少、中間最多跌多深。</p>
+      </header>
+      <form class="search" id="ticker-form">
+        <input id="ticker-input" autocomplete="off" spellcheck="false" placeholder="股票代號，例如 AAOI、SIVE、ESMT（晶豪科）">
+        <button class="btn" type="submit">查詢</button>
+      </form>
+      <div class="chips" id="ticker-quick"></div>
+      <div id="ticker-result"></div>
+    </section>
+
+    <!-- 熱門股票 -->
+    <section class="page" id="page-top">
+      <header class="page-head">
+        <h1>熱門股票</h1>
+        <p class="lead">他最近 30 天最常提到的股票，一次算好「第一次提到就買」和「最近才跟」各賺賠多少。點一列看詳細。</p>
+      </header>
+      <div id="top-result"></div>
+    </section>
+
+    <!-- 問 AI -->
+    <section class="page" id="page-ask">
+      <header class="page-head">
+        <h1>問 AI</h1>
+        <p class="lead">直接用中文問 serenity agent。它會自己查他的推文、算回測、上網找資料，再對照你的狀況回答。</p>
+      </header>
+      <form id="ask-form" class="ask-form">
+        <textarea id="ask-q" rows="3" placeholder="例如：Serenity 最近在講什麼？跟他買 AAOI 值得嗎？"></textarea>
+        <div class="chips" id="ask-examples"></div>
+        <div class="ask-row">
+          <label class="radio"><input type="radio" name="mode" value="fast" checked> 快速（約 1～3 分鐘）</label>
+          <label class="radio"><input type="radio" name="mode" value="deep"> 仔細（Opus 5.5・xhigh，約 3～10 分鐘、用量比較多）</label>
+          <button class="btn" type="submit" id="ask-send">送出</button>
+        </div>
+      </form>
+      <div id="ask-running"></div>
+      <h2 class="sub">之前問過的</h2>
+      <div id="ask-history" class="list"></div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" hidden></div>
+<script src="vendor/marked.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+# macOS / Python
+.DS_Store
+__pycache__/
+*.pyc
+*.log
+
+# 第三方推文存檔（執行 python3 serenity.py update 會自動 clone 下來）
+archive/
+
+# 執行時產生、或含個人資料的檔案
+live/app.log
+live/watch.log
+live/asks.json
+live/state.json
+live/pending.json
+live/test_request
+reports/
+config.json
